@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="formvalidation.css" />
+  </head>
+  <body>
+    <section>
+      <h1>Sign up for magic!</h1>
+      <form action="#">
+        <input type="text" id="Username" placeholder="Username" />
+        <p>Username must be alphanumeric and contains five characters</p>
+
+        <input type="text" id="email" placeholder="email" />
+        <p>Must be a valid email address: magic@magic.com</p>
+        <input type="password" id="password" placeholder="password" />
+        <p>
+          Alphanumeric character between 8 to 15 characters[@_#-] are allowed
+        </p>
+        <input type="text" id="telephone" placeholder="telephone" />
+        <p>11-digit Nigerian number</p>
+        <button type="submit" onclick="validateForm()">Submit</button>
+      </form>
+    </section>
+
+    <script>
+      function validateForm() {
+        const username = document.getElementById("Username").value;
+        const email = document.getElementById("email").value;
+        const password = document.getElementById("password").value;
+        const telephone = document.getElementById("telephone").value;
+
+        const namePattern = /^[A-Za-z\s]+$/;
+        const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+        const passwordPattern = /^(?=.*[A-Z])(?=.*[a-z])(?=.*[.@#$%&])[A-Za-z\d.@#$%&]{8,12}$/;
+        const phoneNumberPattern = /^[0-9]{11}$/;
+
+        if (username === "" || !namePattern.test(username)) {
+          alert("Invalid name format");
+          return false;
+        } else if (email === "" || !emailPattern.test(email)) {
+          alert("Invalid email address format");
+          return false;
+        } else if (password === "" || !passwordPattern.test(password)) {
+          alert("Invalid password format");
+          return false;
+        } else if (telephone === "" || !phoneNumberPattern.test(telephone)) {
+          alert("Invalid phone number format");
+          return false;
+        }
+
+        return true;
+      }
+    </script>
+  </body>
+</html>
